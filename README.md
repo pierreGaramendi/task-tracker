@@ -20,4 +20,10 @@ go build -o task-tracker
     ./task-tracker list -status todo            List all tasks that are not done
     ./task-tracker list -status in-progress     List all tasks that are in progress
     ./task-tracker list -status done            List all tasks that are done
+
+#### Add Task Usage:
+
+<!-- MANPAGE: BEGIN EXCLUDED SECTION -->
+    ./task-tracker add -task "Task description"     Add new task to json file
+    
     
