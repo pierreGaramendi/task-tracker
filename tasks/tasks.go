@@ -65,6 +65,21 @@ func (tl *TaskList) AddTask(description string, status TaskStatus) int {
 	return newId
 }
 
+func (tl *TaskList) DeleteTask(id int) error {
+	index := -1
+	for i, task := range tl.Tasks {
+		if task.ID == id {
+			index = i
+			break
+		}
+	}
+	if index == -1 {
+		return fmt.Errorf("task with Id %d not found", id)
+	}
+	tl.Tasks = append(tl.Tasks[:index], tl.Tasks[index+1:]...)
+	return nil
+}
+
 func (tl *TaskList) WriteTasksToFile(filename string) error {
 	bytes, err := json.MarshalIndent(tl, "", "")
 	if err != nil {
