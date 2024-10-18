@@ -41,6 +41,10 @@ func ReadTasksFromFile(filename string) (*TaskList, error) {
 }
 
 func (tl *TaskList) PrintTasks(status TaskStatus) {
+	if len(tl.Tasks) == 0 {
+		fmt.Printf("Task list is empty.\n")
+		return
+	}
 	fmt.Printf("Task List:\n")
 	fmt.Printf("\n")
 	for _, task := range tl.Tasks {
