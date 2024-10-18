@@ -5,9 +5,9 @@ Solution for the [Task Tracker](https://roadmap.sh/projects/task-tracker) backen
 
 
 ### INSTALLATION
-git clone https://github.com/arikchakma/backend-projects.git
-cd task-tracker
-go build -o task-tracker  
+    git clone https://github.com/arikchakma/backend-projects.git
+    cd task-tracker
+    go build -o task-tracker  
 
 ### USAGE AND OPTIONS
 
@@ -15,7 +15,6 @@ go build -o task-tracker
 
 #### List Usage:
 
-<!-- MANPAGE: BEGIN EXCLUDED SECTION -->
     ./task-tracker list                         List all tasks
     ./task-tracker list -status todo            List all tasks that are not done
     ./task-tracker list -status in-progress     List all tasks that are in progress
@@ -23,7 +22,4 @@ go build -o task-tracker
 
 #### Add Task Usage:
 
-<!-- MANPAGE: BEGIN EXCLUDED SECTION -->
     ./task-tracker add -task "Task description"     Add new task to json file
-    
-    
