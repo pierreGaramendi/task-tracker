@@ -51,3 +51,28 @@ func (tl *TaskList) PrintTasks(status TaskStatus) {
 		}
 	}
 }
+
+func (tl *TaskList) AddTask(description string, status TaskStatus) int {
+	newId := len(tl.Tasks) + 1
+	newTask := Task{
+		ID:          len(tl.Tasks) + 1,
+		Description: description,
+		Status:      status,
+		CreatedAt:   time.Now(),
+		UpdatedAt:   time.Now(),
+	}
+	tl.Tasks = append(tl.Tasks, newTask)
+	return newId
+}
+
+func (tl *TaskList) WriteTasksToFile(filename string) error {
+	bytes, err := json.MarshalIndent(tl, "", "")
+	if err != nil {
+		return fmt.Errorf("error serializing task to JSON: %v", err)
+	}
+	err = os.WriteFile(filename, bytes, 0644)
+	if err != nil {
+		return fmt.Errorf("error writing to file: %v", err)
+	}
+	return nil
+}
