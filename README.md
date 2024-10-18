@@ -5,7 +5,7 @@ Solution for the [Task Tracker](https://roadmap.sh/projects/task-tracker) backen
 
 
 ### INSTALLATION
-    git clone https://github.com/arikchakma/backend-projects.git
+    git clone https://github.com/pierreGaramendi/task-tracker.git
     cd task-tracker
     go build -o task-tracker  
 
