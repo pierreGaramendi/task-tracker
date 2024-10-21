@@ -18,6 +18,12 @@ func main() {
 		commands.HandleListCommand(os.Args[2:])
 	case "delete":
 		commands.HandleDeleteCommand(os.Args[2:])
+	case "update":
+		commands.HandleUpdateCommand(os.Args[2:])
+	case "mark-in-progress":
+		commands.HandleUpdateStateCommand(os.Args[1:])
+	case "mark-done":
+		commands.HandleUpdateStateCommand(os.Args[1:])
 	default:
 		fmt.Printf("Unknown subcommand: %s\n", os.Args[1])
 		fmt.Println("Available subcommands: list, add, update, delete, mark-in-progress, mark-done")

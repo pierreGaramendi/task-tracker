@@ -84,6 +84,28 @@ func (tl *TaskList) DeleteTask(id int) error {
 	return nil
 }
 
+func (tl *TaskList) UpdateTask(id int, newDescription string) error {
+	for i, task := range tl.Tasks {
+		if task.ID == id {
+			tl.Tasks[i].Description = newDescription
+			tl.Tasks[i].UpdatedAt = time.Now()
+			return nil
+		}
+	}
+	return fmt.Errorf("task with ID %d not found", id)
+}
+
+func (tl *TaskList) UpdateStatusTask(id int, newStatus TaskStatus) error {
+	for i, task := range tl.Tasks {
+		if task.ID == id {
+			tl.Tasks[i].Status = newStatus
+			tl.Tasks[i].UpdatedAt = time.Now()
+			return nil
+		}
+	}
+	return fmt.Errorf("task with ID %d not found", id)
+}
+
 func (tl *TaskList) WriteTasksToFile(filename string) error {
 	bytes, err := json.MarshalIndent(tl, "", "")
 	if err != nil {
@@ -94,4 +116,8 @@ func (tl *TaskList) WriteTasksToFile(filename string) error {
 		return fmt.Errorf("error writing to file: %v", err)
 	}
 	return nil
+}
+
+func IsTaskNameValid(taskName string) bool {
+	return taskName != ""
 }

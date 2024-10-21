@@ -13,7 +13,7 @@ func HandleAddCommand(args []string) {
 	taskName := addCmd.String("task", "", "Name of the task to add")
 	addCmd.Parse(args)
 
-	if !IsTaskNameValid(*taskName) {
+	if !tasks.IsTaskNameValid(*taskName) {
 		fmt.Println("A task name is required")
 		addCmd.PrintDefaults()
 		os.Exit(1)
@@ -31,8 +31,4 @@ func HandleAddCommand(args []string) {
 	} else {
 		fmt.Printf("Task added successfully. (ID: %d)\n", newId)
 	}
-}
-
-func IsTaskNameValid(taskName string) bool {
-	return taskName != ""
 }
