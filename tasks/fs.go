@@ -20,7 +20,22 @@ type TaskList struct {
 	Tasks []Task `json:"tasks"`
 }
 
+func EnsureFileExists(filename string) error {
+	if _, err := os.Stat(filename); os.IsNotExist(err) {
+		initialContent := `{"tasks": []}`
+		err := os.WriteFile(filename, []byte(initialContent), 0644)
+		if err != nil {
+			return fmt.Errorf("error creating file %s: %v", filename, err)
+		}
+	}
+	return nil
+}
+
 func ReadTasksFromFile(filename string) (*TaskList, error) {
+	err := EnsureFileExists("tasks.json")
+	if err != nil {
+		fmt.Println("Error:", err)
+	}
 	file, err := os.Open(filename)
 	if err != nil {
 		return nil, fmt.Errorf("error opening file: %v", err)
