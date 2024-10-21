@@ -12,6 +12,11 @@ func HandleUpdateCommand(args []string) {
 	taskId := updateCmd.Int("id", -1, "Task Id")
 	desc := updateCmd.String("desc", "", "Task Description")
 	updateCmd.Parse(args)
+	if *taskId <= 0 {
+		fmt.Println("A task id is required")
+		updateCmd.PrintDefaults()
+		os.Exit(1)
+	}
 	if !tasks.IsTaskNameValid(*desc) {
 		fmt.Println("A task description is required")
 		updateCmd.PrintDefaults()
